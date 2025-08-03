@@ -17,7 +17,7 @@ import Pagination from '../components/Pagination'
 
 const Shop = () => {
  
-  let info = useContext(ApiData)
+  let {info} = useContext(ApiData)
   
   let [cateShow, setCateShow] = useState(false);
   let [cateShowOne, setCateShowOne] = useState(false);
@@ -35,6 +35,16 @@ const Shop = () => {
   let firstPage = lastPage - perPage
   let allData = info.slice(firstPage, lastPage);
 
+
+  let pageNumber = [];
+  for (let i = 0; i < Math.ceil(info.length / perPage); i++){
+    pageNumber.push(i)
+  }
+  
+let paginate = (index) =>{
+setCurrentPage(index + 1)
+
+}
   
 
 
@@ -412,7 +422,13 @@ const Shop = () => {
             <div className="flex flex-wrap justify-between">
               <Page allData={allData} />
 
-              <Pagination />
+              <Pagination 
+              pageNumber={pageNumber} 
+              paginate={paginate}
+              currentPage={currentPage}
+              perPage={perPage}
+              info={info}
+              />
             </div>
           </div>
         </div>

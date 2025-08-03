@@ -2,18 +2,30 @@
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { IoGitCompare } from "react-icons/io5";
 import { default as Cup } from "../assets/product.png";
+import { useContext, useState } from "react";
+import { ApiData } from "./ContextApi";
 
 
 const Page = ({ allData }) => {
+  let {loading} =useContext(ApiData)
+  
+  if(loading){
+    return(
+      <>
+        <h2>loading......</h2>
+      </>
+    )
+
+  }
  
 
   return (
     <>
-      {allData.map(() => (
+      {allData.map((item) => (
         <div className="w-[31%] pb-[50px] ">
           <div className="relative group">
             <div className="bg-[#F9F9F9]">
-              <img src={Cup} alt="" />
+              <img src={item.thumbnail} alt="" />
             </div>
             <div className="bg-white pr-[20px] absolute bottom-0 right-0 w-full h-[0] z-100 overflow-hidden   group-hover:h-[150px] duration-500 ease-in-out">
               <ul>
@@ -40,10 +52,10 @@ const Page = ({ allData }) => {
           <div className="">
             <div className="flex items-center justify-between pt-[24px] pb-[15px]">
               <h4 className="text-[18px] font-dm font-bold text-[#262626]">
-                Basic Crew Neck Tee
+                {item.title}
               </h4>
               <p className="text-[14px] font-dm font-normal text-[#767676]">
-                $44.00
+                ${item.price}
               </p>
             </div>
             <h1 className="text-[16px] font-dm font-normal text-[#767676]">

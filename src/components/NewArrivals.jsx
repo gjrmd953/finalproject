@@ -29,7 +29,7 @@ function SamplePrevArrow(props) {
 }
 
 const NewArrivals = () => {
-    let data = useContext(ApiData);
+    let {info} = useContext(ApiData);
     let newSlider = {
       infinite: true,
       slidesToShow: 4,
@@ -64,7 +64,7 @@ const NewArrivals = () => {
 
         <div>
           <Slider {...newSlider}>
-            {data.map((item) => (
+            {info.map((item) => (
               <Link to="/product">
                 <div className="!w-[95%]">
                   <div className="relative group">

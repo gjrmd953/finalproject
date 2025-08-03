@@ -1,4 +1,6 @@
-const Pagination = () => {
+const Pagination = ({pageNumber, paginate, currentPage, perPage, info}) => {
+  
+  
   return (
     <div className="flex items-center pb-[60px]">
       <nav aria-label="Page navigation example">
@@ -26,47 +28,17 @@ const Pagination = () => {
               </svg>
             </a>
           </li>
+          {pageNumber.map((item,i)=>(
           <li>
-            <a
-              href="#"
+            <a 
+              onClick={()=>paginate(i)}
               class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             >
-              1
+              {item + 1}
             </a>
           </li>
-          <li>
-            <a
-              href="#"
-              class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              2
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              aria-current="page"
-              class="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-            >
-              3
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              4
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              5
-            </a>
-          </li>
+          ))}
+
           <li>
             <a
               href="#"
@@ -92,7 +64,9 @@ const Pagination = () => {
           </li>
         </ul>
       </nav>
-      <h4 className="pl-[410px]">Products from 1 to 12 of 80</h4>
+      <h4 className="pl-[410px]">
+        Products from {currentPage} to {perPage} of {info.length}
+        </h4>
     </div>
   );
 }
