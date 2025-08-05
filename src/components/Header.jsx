@@ -10,55 +10,58 @@ const Header = () => {
   let [show, setShow] = useState(false)
   return (
     <>
-      <header className={`lg:py-2 ${show ? "mb-0" : "mb-8 lg:mb-0"}`}>
+      <header className={`lg:py-4 ${show ? "mb-0" : "mb-8 lg:mb-0"}`}>
         <Container>
           <Flex className="items-center">
             <div className="w-1/3">
-              <div className="pt-2 lg:pt-0">
-                  <img src={Logo} alt="" />
+              <div className="pt-2 lg:pt-0 cursor-pointer">
+                <img src={Logo} alt="" />
               </div>
             </div>
             <div className="w-full lg:w-2/3">
               <ul
-                className={`lg:flex justify-end gap-x-6 mt-2 duration-300 ease-in-out ${
-                  show == true ? "bg-green-500 mt-0 w-full" : "mt-[-160px] lg:mt-0"
-                }`}
+                className={`lg:flex justify-end gap-x-8 mt-2 duration-300 ease-in-out ${show == true ? "bg-green-500 mt-0 w-full" : "mt-[-160px] lg:mt-0"
+                  }`}
               >
                 <li>
                   <Link
-                    className="font-dm text-[14px] text-[#767676] font-normal hover:text-[#262626] duration-300 ease-in-out text-capitalize"
+                    className="font-dm text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold duration-300 ease-in-out text-capitalize"
                     to="/"
                   >
                     Home
                   </Link>
                 </li>
+
                 <li>
                   <Link
-                    className="font-dm text-[14px] text-[#767676] font-normal"
+                    className="font-dm text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold duration-300 ease-in-out text-capitalize"
                     to="/about"
                   >
                     About
                   </Link>
                 </li>
+
                 <li>
                   <Link
-                    className="font-dm text-[14px] text-[#767676] font-normal"
+                    className="font-dm text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold duration-300 ease-in-out text-capitalize"
                     to="/product"
                   >
                     Shop
                   </Link>
                 </li>
+
                 <li>
                   <Link
-                    className="font-dm text-[14px] text-[#767676] font-normal"
+                    className="font-dm text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold duration-300 ease-in-out text-capitalize"
                     href="#"
                   >
                     Contact
                   </Link>
                 </li>
+
                 <li>
                   <Link
-                    className="font-dm text-[14px] text-[#767676] font-normal"
+                    className="font-dm text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold duration-300 ease-in-out text-capitalize"
                     href="#"
                   >
                     Journal

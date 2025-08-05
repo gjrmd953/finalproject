@@ -15,26 +15,26 @@ const Navbar = () => {
   let accRef = useRef()
   let cartRef = useRef()
 
-useEffect(() => {
-  document.addEventListener("click", (e) => {
-    if (cateRef.current.contains(e.target) == true) {
-      setCateShow(!cateShow);
-    } else {
-      setCateShow(false);
-    }
-    if (accRef.current.contains(e.target)) {
-      setAccShow(!accShow);
-    } else {
-      setAccShow(false);
-    }
-    if (cartRef.current.contains(e.target) == true) {
-      setCartShow(!cartshow)
-    }else{
-      setCartShow(false)
-    }
-    
-  });
-}, [cateShow, accShow, cartshow]);
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (cateRef.current.contains(e.target) == true) {
+        setCateShow(!cateShow);
+      } else {
+        setCateShow(false);
+      }
+      if (accRef.current.contains(e.target)) {
+        setAccShow(!accShow);
+      } else {
+        setAccShow(false);
+      }
+      if (cartRef.current.contains(e.target) == true) {
+        setCartShow(!cartshow)
+      } else {
+        setCartShow(false)
+      }
+
+    });
+  }, [cateShow, accShow, cartshow]);
 
 
   return (
@@ -44,9 +44,9 @@ useEffect(() => {
           <div className="w-full lg:w-1/4 relative">
             <div className="flex items-center gap-2" ref={cateRef}>
               <div className="">
-                <HiOutlineBars2 />
+                <HiOutlineBars2 className="cursor-pointer"/>
               </div>
-              <h3 className="font-dm text-[14px] text-[#262626] font-normal hidden lg:block">
+              <h3 className="font-dm text-[14px] text-[#262626] font-normal hidden lg:block cursor-pointer">
                 Shop by Category
               </h3>
             </div>
@@ -107,31 +107,31 @@ useEffect(() => {
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search..."
-                className="w-full bg-white py-3 pl-4 rounded-full"
+                placeholder="Search Products"
+                className="w-full bg-white py-3 pl-4 rounded-full focus:outline-none"
               />
               <div className="absolute right-6 top-[50%] translate-y-[-50%] z-[10]">
-                <FaSearch />
+                <FaSearch className="cursor-pointer"/>
               </div>
             </div>
           </div>
           <div className="w-full lg:w-1/4 relative">
             <div className="flex justify-end gap-x-3">
               <div className="flex" ref={accRef}>
-                <FaUser />
-                <IoMdArrowDropdown />
+                <FaUser className="cursor-pointer"/>
+                <IoMdArrowDropdown className="cursor-pointer" />
               </div>
               <div className="text-[#222]" ref={cartRef}>
-                <FaCartArrowDown />
+                <FaCartArrowDown className="cursor-pointer"/>
               </div>
             </div>
             {accShow && (
               <div className="w-[200px] absolute left-[30%] top-[41px] z-[10]">
                 <ul>
-                  <li className="py-3 px-4 bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out">
+                  <li className="py-3 px-4 bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out cursor-pointer">
                     My Account
                   </li>
-                  <li className="py-3 px-4 bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out">
+                  <li className="py-3 px-4 bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out cursor-pointer">
                     Log Out
                   </li>
                 </ul>
@@ -140,7 +140,7 @@ useEffect(() => {
             {cartshow && (
               <div className="absolute left-0 top-[40px] w-full z-[10] bg-[#fff]">
                 <div className="flex items-center justify-around bg-[#F5F5F3]">
-                  <div className="">
+                  <div className="cursor-pointer">
                     <img src={CartImage} alt="" />
                   </div>
                   <div className="">
@@ -148,7 +148,7 @@ useEffect(() => {
                     <h5>$44.00</h5>
                   </div>
                   <div className="">
-                    <RxCross2 />
+                    <RxCross2 className="cursor-pointer"/>
                   </div>
                 </div>
                 <div className="">
@@ -156,10 +156,10 @@ useEffect(() => {
                     <span>Subtotal:</span> $44.00
                   </h3>
                   <ul className="flex justify-between mt-2">
-                    <li className="py-3 w-[150px] bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out">
+                    <li className="py-3 w-[150px] bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out cursor-pointer">
                       View Cart
                     </li>
-                    <li className="py-3 w-[150px] bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out">
+                    <li className="py-3 w-[150px] bg-[#262626] text-white font-dm text-[16px] text-center hover:text-[#222] hover:bg-[#fff] duration-300 ease-in-out cursor-pointer">
                       Checkout
                     </li>
                   </ul>

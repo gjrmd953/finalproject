@@ -77,7 +77,7 @@ const Footer = () => {
               <h3 className="lg:text-[16px] text-[14px] text-[#262626] font-dm font-bold  lg:pb-[10px] pb-[2px]">
                 (052) 611-5711
               </h3>
-              <h4 className="lg:text-[16px] text-[14px] text-[#262626] font-dm font-bold  lg:pb-[16px] ">
+              <h4 className="lg:text-[16px] text-[14px] text-[#262626] font-dm font-bold  lg:pb-[16px] cursor-pointer">
                 company@domain.com
               </h4>
             </div>
@@ -88,13 +88,13 @@ const Footer = () => {
           <div className="lg:flex justify-between items-center ">
             <div className="flex lg:gap-x-[26px] gap-x-[50px] lg:justify-start justify-center lg:mb-0 mb-[16px]">
               <div className="">
-                <FaFacebookF className="text-primary" />
+                <FaFacebookF className="text-primary cursor-pointer" />
               </div>
               <div className="">
-                <FaLinkedin className="text-primary" />
+                <FaLinkedin className="text-primary cursor-pointer" />
               </div>
               <div className="">
-                <FaInstagram className="text-primary" />
+                <FaInstagram className="text-primary cursor-pointer" />
               </div>
             </div>
             <div className="lg:text-[14px] text-[12px] text-fadetxt font-dmsans font-normal text-center">

@@ -136,7 +136,7 @@ setCurrentPage(index + 1)
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Category{" "}
-                {cateShow ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+                {cateShow ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
               </h4>
               {cateShow && (
                 <ul className="mb-[50px]">
@@ -147,7 +147,7 @@ setCurrentPage(index + 1)
                     }`}
                   >
                     <div className="flex justify-between  items-center">
-                      Category 1 {cateShowOne ? <TiMinus /> : <FiPlus />}
+                      Category 1 {cateShowOne ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
                     </div>
                   </li>
                   {cateShowOne && (
@@ -177,7 +177,7 @@ setCurrentPage(index + 1)
                       cateShowTwo ? "border-none" : ""
                     }`}
                   >
-                    Category 2{cateShowTwo ? <TiMinus /> : <FiPlus />}
+                    Category 2{cateShowTwo ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
                   </li>
                   {cateShowTwo && (
                     <div className="mb-[10px]">
@@ -206,7 +206,7 @@ setCurrentPage(index + 1)
                       cateShowThree ? "border-none" : ""
                     }`}
                   >
-                    Category 3{cateShowThree ? <TiMinus /> : <FiPlus />}
+                    Category 3{cateShowThree ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
                   </li>
                   {cateShowThree && (
                     <div className="mb-[10px]">
@@ -235,7 +235,7 @@ setCurrentPage(index + 1)
                       cateShowFour ? "border-none" : ""
                     }`}
                   >
-                    Category 4{cateShowFour ? <TiMinus /> : <FiPlus />}
+                    Category 4{cateShowFour ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
                   </li>
                   {cateShowFour && (
                     <div className="mb-[10px]">
@@ -264,7 +264,7 @@ setCurrentPage(index + 1)
                       cateShowFive ? "border-none" : ""
                     }`}
                   >
-                    Category 5{cateShowFive ? <TiMinus /> : <FiPlus />}
+                    Category 5{cateShowFive ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
                   </li>
                   {cateShowFive && (
                     <div className="mb-[20px]">
@@ -296,7 +296,7 @@ setCurrentPage(index + 1)
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Color{" "}
-                {letShow ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+                {letShow ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
               </h4>
               {letShow && (
                 <ul className="mb-[50px]">
@@ -329,7 +329,7 @@ setCurrentPage(index + 1)
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Brand{" "}
-                {letShowOne ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+                {letShowOne ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
               </h4>
               {letShowOne && (
                 <ul className="mb-[50px]">
@@ -357,7 +357,7 @@ setCurrentPage(index + 1)
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Price{" "}
-                {letShowThree ? <IoMdArrowDropup /> : <IoMdArrowDropdown />}
+                {letShowThree ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
               </h4>
               {letShowThree && (
                 <ul>
@@ -384,10 +384,10 @@ setCurrentPage(index + 1)
             <div className="flex pb-[60px]">
               <div className="flex gap-[12px] ">
                 <div className="h-[36px] w-[36px] flex justify-center items-center hover:text-white bg-white hover:bg-[#000]">
-                  <HiSquares2X2 />
+                  <HiSquares2X2 className='cursor-pointer'/>
                 </div>
                 <div className="h-[36px] w-[36px] flex justify-center items-center hover:text-white bg-white hover:bg-[#000]">
-                  <FaThList />
+                  <FaThList className='cursor-pointer'/>
                 </div>
               </div>
               <div className="flex pl-[280px] pr-[40px]">
@@ -395,7 +395,7 @@ setCurrentPage(index + 1)
                 <form className="w-[239px]">
                   <select
                     id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#767676] cursor-pointer"
                   >
                     <option>United States</option>
                     <option>Canada</option>
@@ -409,7 +409,7 @@ setCurrentPage(index + 1)
                 <form className="w-[139px]">
                   <select
                     id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#767676] cursor-pointer"
                   >
                     <option>36</option>
                     <option>38</option>
