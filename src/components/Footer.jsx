@@ -74,7 +74,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="lg:w-3/8 w-1/2 lg:mt-0 mt-[20px] pl-[80px]">
-              <h3 className="lg:text-[16px] text-[14px] text-[#262626] font-dm font-bold  lg:pb-[10px] pb-[2px]">
+              <h3 className="lg:text-[16px] text-[14px] text-[#262626] font-dm font-bold  lg:pb-[10px] pb-[2px] cursor-pointer">
                 (052) 611-5711
               </h3>
               <h4 className="lg:text-[16px] text-[14px] text-[#262626] font-dm font-bold  lg:pb-[16px] cursor-pointer">
