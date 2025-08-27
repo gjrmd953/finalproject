@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Container from '../components/Container'
 
 
@@ -16,20 +16,18 @@ import Pagination from '../components/Pagination'
 
 
 const Shop = () => {
- 
-  let {info} = useContext(ApiData)
-  
+
+  let { info } = useContext(ApiData)
+
   let [cateShow, setCateShow] = useState(false);
   let [cateShowOne, setCateShowOne] = useState(false);
-  let [cateShowTwo, setCateShowTwo] = useState(false);
-  let [cateShowThree, setCateShowThree] = useState(false);
-  let [cateShowFour, setCateShowFour] = useState(false);
-  let [cateShowFive, setCateShowFive] = useState(false);
   let [letShow, setLatShow] = useState(false);
   let [letShowOne, setLatShowOne] = useState(false);
   let [letShowThree, setLatShowThree] = useState(false);
   let [perPage, setPerPage] = useState(6)
   let [currentPage, setCurrentPage] = useState(1)
+  let [category, setCategory] = useState([])
+  let [cateFilter, setCateFilter] = useState([])
 
   let lastPage = perPage * currentPage;
   let firstPage = lastPage - perPage
@@ -37,18 +35,35 @@ const Shop = () => {
 
 
   let pageNumber = [];
-  for (let i = 0; i < Math.ceil(info.length / perPage); i++){
+  for (let i = 0; i < Math.ceil(info.length / perPage); i++) {
     pageNumber.push(i)
   }
-  
-let paginate = (index) =>{
-setCurrentPage(index + 1)
 
+  let paginate = (index) => {
+    setCurrentPage(index + 1)
+  }
+
+  let next = () => {
+    if (currentPage < pageNumber.length) {
+      setCurrentPage((state) => state + 1)
+    }
+  }
+  let prev = () => {
+    if (currentPage > 1) {
+      setCurrentPage((state) => state - 1)
+    }
+  }
+
+  useEffect(() => {
+    setCategory([...new Set(info.map((item) => item.category))])
+  }, [info])
+
+
+let handleCategory = (citem) =>{
+  let cateFilter = info.filter((item)=> item.category == citem)
+  setCateFilter(cateFilter);
+  
 }
-  
-
-
-  
 
 
 
@@ -129,164 +144,26 @@ setCurrentPage(index + 1)
           </nav>
         </div>
         <div className="flex">
-          <div className="w-3/12 pb-[130px]">
+          <div className="w-3/12 pb-[70px]">
             <div className="">
               <h4
                 onClick={() => setCateShow(!cateShow)}
-                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
+                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px] cursor-pointer"
               >
                 Shop by Category{" "}
-                {cateShow ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
+                {cateShow ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
               </h4>
               {cateShow && (
-                <ul className="mb-[50px]">
-                  <li
-                    onClick={() => setCateShowOne(!cateShowOne)}
-                    className={`text-[#767676] text-[16px] font-dm font-bold  py-[19px]  border-b-1 border-[#D8D8D8] ${
-                      cateShowOne ? "border-none" : ""
-                    }`}
+                <ul className="mb-[10px] cursor-pointer">
+                  {category.map((item)=>(
+                  <li onClick={()=>handleCategory(item)}
+                    className={`text-[#767676] text-[16px] font-dm font-bold  py-[10px]
+                      }`}
                   >
-                    <div className="flex justify-between  items-center">
-                      Category 1 {cateShowOne ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
-                    </div>
+                    <p className="flex justify-between  items-center capitalize"> {item}</p>
                   </li>
-                  {cateShowOne && (
-                    <div className="mb-[10px]">
-                      <ul>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 1.1
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 1.2
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 1.3
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 1.4
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 1.5
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                  <li
-                    onClick={() => setCateShowTwo(!cateShowTwo)}
-                    className={`text-[#767676] flex justify-between items-center text-[16px] font-dm font-bold  py-[19px] border-b-1 border-[#D8D8D8] ${
-                      cateShowTwo ? "border-none" : ""
-                    }`}
-                  >
-                    Category 2{cateShowTwo ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
-                  </li>
-                  {cateShowTwo && (
-                    <div className="mb-[10px]">
-                      <ul>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 2.1
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 2.2
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 2.3
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 2.4
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 2.5
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                  <li
-                    onClick={() => setCateShowThree(!cateShowThree)}
-                    className={`text-[#767676] flex justify-between items-center text-[16px] font-dm font-bold  py-[19px] border-b-1 border-[#D8D8D8] ${
-                      cateShowThree ? "border-none" : ""
-                    }`}
-                  >
-                    Category 3{cateShowThree ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
-                  </li>
-                  {cateShowThree && (
-                    <div className="mb-[10px]">
-                      <ul>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 3.1
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 3.2
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 3.3
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 3.4
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 3.5
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                  <li
-                    onClick={() => setCateShowFour(!cateShowFour)}
-                    className={`text-[#767676] flex justify-between items-center text-[16px] font-dm font-bold  py-[19px] border-b-1 border-[#D8D8D8] ${
-                      cateShowFour ? "border-none" : ""
-                    }`}
-                  >
-                    Category 4{cateShowFour ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
-                  </li>
-                  {cateShowFour && (
-                    <div className="mb-[10px]">
-                      <ul>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.1
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.2
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.3
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.4
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.5
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                  <li
-                    onClick={() => setCateShowFive(!cateShowFive)}
-                    className={`text-[#767676] flex justify-between items-center text-[16px] font-dm font-bold  py-[19px] border-b-1 border-[#D8D8D8] ${
-                      cateShowFive ? "border-none" : ""
-                    }`}
-                  >
-                    Category 5{cateShowFive ? <TiMinus className='cursor-pointer'/> : <FiPlus className='cursor-pointer'/>}
-                  </li>
-                  {cateShowFive && (
-                    <div className="mb-[20px]">
-                      <ul>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.1
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.2
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.3
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.4
-                        </li>
-                        <li className="text-[#767676] text-[14px] py-[10px] border-b-1 border-[#D8D8D8] font-dm">
-                          Category 4.5
-                        </li>
-                      </ul>
-                    </div>
-                  )}
+                  ))}
+                  
                 </ul>
               )}
             </div>
@@ -296,7 +173,7 @@ setCurrentPage(index + 1)
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Color{" "}
-                {letShow ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
+                {letShow ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
               </h4>
               {letShow && (
                 <ul className="mb-[50px]">
@@ -329,7 +206,7 @@ setCurrentPage(index + 1)
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Brand{" "}
-                {letShowOne ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
+                {letShowOne ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
               </h4>
               {letShowOne && (
                 <ul className="mb-[50px]">
@@ -357,7 +234,7 @@ setCurrentPage(index + 1)
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Price{" "}
-                {letShowThree ? <IoMdArrowDropup className='cursor-pointer'/> : <IoMdArrowDropdown className='cursor-pointer'/>}
+                {letShowThree ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
               </h4>
               {letShowThree && (
                 <ul>
@@ -384,10 +261,10 @@ setCurrentPage(index + 1)
             <div className="flex pb-[60px]">
               <div className="flex gap-[12px] ">
                 <div className="h-[36px] w-[36px] flex justify-center items-center hover:text-white bg-white hover:bg-[#000]">
-                  <HiSquares2X2 className='cursor-pointer'/>
+                  <HiSquares2X2 className='cursor-pointer' />
                 </div>
                 <div className="h-[36px] w-[36px] flex justify-center items-center hover:text-white bg-white hover:bg-[#000]">
-                  <FaThList className='cursor-pointer'/>
+                  <FaThList className='cursor-pointer' />
                 </div>
               </div>
               <div className="flex pl-[280px] pr-[40px]">
@@ -419,15 +296,17 @@ setCurrentPage(index + 1)
                 </form>
               </div>
             </div>
-            <div className="flex flex-wrap justify-between">
-              <Page allData={allData} />
+            <div>
+              <Page allData={allData} cateFilter={cateFilter} />
 
-              <Pagination 
-              pageNumber={pageNumber} 
-              paginate={paginate}
-              currentPage={currentPage}
-              perPage={perPage}
-              info={info}
+              <Pagination
+                pageNumber={pageNumber}
+                paginate={paginate}
+                currentPage={currentPage}
+                perPage={perPage}
+                info={info}
+                next={next}
+                prev={prev}
               />
             </div>
           </div>
