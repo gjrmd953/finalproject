@@ -1,10 +1,13 @@
-const Pagination = ({pageNumber, paginate, currentPage, perPage, info, next, prev}) => {
+const Pagination = ({pageNumber, paginate, currentPage, perPage, info, next, prev, cateFilter}) => {
   
   
+
 
 
   return (
-    <div className="flex items-center pb-[60px]">
+      <>
+
+          <div className={`${cateFilter.length > 0 ? "hidden" : "flex items-center pb-[60px]"}`}>
       <nav aria-label="Page navigation example">
         <ul class="flex items-center -space-x-px h-10 text-base">
           <li onClick={prev}>
@@ -28,8 +31,9 @@ const Pagination = ({pageNumber, paginate, currentPage, perPage, info, next, pre
                 />
               </svg>
             </a>
-          </li>
-          {pageNumber.map((item,i)=>(
+          </li>   
+   
+           {pageNumber.map((item,i)=>(
           <li>
             <a 
               onClick={()=>paginate(i)}
@@ -38,7 +42,9 @@ const Pagination = ({pageNumber, paginate, currentPage, perPage, info, next, pre
               {item + 1}
             </a>
           </li>
-          ))}
+          ))}    
+
+          
 
           <li onClick={next}>
             <a
@@ -68,6 +74,7 @@ const Pagination = ({pageNumber, paginate, currentPage, perPage, info, next, pre
         Products from {currentPage} to {perPage} of {info.length}
         </h4>
     </div>
+      </>
   );
 }
 export default Pagination

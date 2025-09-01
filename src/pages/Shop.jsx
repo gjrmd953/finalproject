@@ -1,24 +1,20 @@
 import { useContext, useEffect, useState } from 'react'
 import Container from '../components/Container'
-
-
 import { FaThList } from 'react-icons/fa'
 import { FiPlus } from 'react-icons/fi'
-import { HiSquares2X2 } from 'react-icons/hi2'
-import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io'
-import { TiMinus } from 'react-icons/ti'
 import { Link } from 'react-router-dom'
-
-
 import { ApiData } from '../components/ContextApi'
 import Page from '../components/Page'
 import Pagination from '../components/Pagination'
+import { TiMinus } from 'react-icons/ti'
+import { HiSquares2X2 } from 'react-icons/hi2'
+import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io'
 
 
 const Shop = () => {
-
-  let { info } = useContext(ApiData)
-
+ 
+  let {info} = useContext(ApiData)
+  
   let [cateShow, setCateShow] = useState(false);
   let [cateShowOne, setCateShowOne] = useState(false);
   let [letShow, setLatShow] = useState(false);
@@ -26,44 +22,73 @@ const Shop = () => {
   let [letShowThree, setLatShowThree] = useState(false);
   let [perPage, setPerPage] = useState(6)
   let [currentPage, setCurrentPage] = useState(1)
-  let [category, setCategory] = useState([])
-  let [cateFilter, setCateFilter] = useState([])
-
+  let [cateFilter,setCateFilter] = useState([])
+  let [brand,setBrand] = useState([])
+  let [category,setCategory] = useState([])
+  let [active,setActive] = useState("")
+  let [low,setLow] = useState()
+  let [high,setHigh] = useState()
   let lastPage = perPage * currentPage;
   let firstPage = lastPage - perPage
   let allData = info.slice(firstPage, lastPage);
+ 
+  
+ let pageNumber = [];
+ for (let i = 0; i < Math.ceil(info.length / perPage); i++){
+  pageNumber.push(i)
+ }
+  
 
-
-  let pageNumber = [];
-  for (let i = 0; i < Math.ceil(info.length / perPage); i++) {
-    pageNumber.push(i)
-  }
-
-  let paginate = (index) => {
-    setCurrentPage(index + 1)
-  }
-
-  let next = () => {
-    if (currentPage < pageNumber.length) {
-      setCurrentPage((state) => state + 1)
-    }
-  }
-  let prev = () => {
-    if (currentPage > 1) {
-      setCurrentPage((state) => state - 1)
-    }
-  }
-
-  useEffect(() => {
-    setCategory([...new Set(info.map((item) => item.category))])
-  }, [info])
-
-
-let handleCategory = (citem) =>{
-  let cateFilter = info.filter((item)=> item.category == citem)
-  setCateFilter(cateFilter);
+let paginate = (index) =>{
+ setCurrentPage(index + 1)
   
 }
+let next = () =>{
+ if (currentPage < pageNumber.length){
+  setCurrentPage((state)=> state+1)
+ }
+  
+}
+let prev = () =>{
+
+  if (currentPage > 1){
+     setCurrentPage((state) => state - 1)
+  }
+
+}
+useEffect(()=>{
+  setCategory([...new Set(info.map((item)=>item.category))])
+  setBrand([...new Set(info.map((item)=>item.brand))])
+                
+
+},[info]);
+ 
+let handleCategory = (citem) =>{
+  console.log(citem);
+  
+let cateFilter = info.filter((item)=> item.category === citem)
+ setCateFilter(cateFilter);
+}
+let handleList = () =>{
+  setActive("active")
+}
+ let handleChange =(e) =>{
+  setPerPage(e.target.value);
+  
+ }
+ let handlePrice =(value) =>{
+  setLow(value.low);
+    setHigh(value.high);
+  let priceShow = info.filter((item)=> item.price >= value.low && item.price <= value.high)
+
+  setCateFilter(priceShow)
+ }
+ let handleBrand =(bitem) =>{
+  let brandFilter=info.filter ((item)=> item.brand == bitem)
+  setCateFilter(brandFilter);
+ }
+
+  
 
 
 
@@ -145,44 +170,50 @@ let handleCategory = (citem) =>{
         </div>
         <div className="flex">
           <div className="w-3/12 pb-[70px]">
-            <div className="">
+            <div className="cursor-pointer">
               <h4
                 onClick={() => setCateShow(!cateShow)}
-                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px] cursor-pointer"
+                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[10px]"
               >
-                Shop by Category{" "}
-                {cateShow ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
+                Shop by Category
+                {cateShow ? <IoMdArrowDropup/ > : <IoMdArrowDropdown/>}
               </h4>
               {cateShow && (
-                <ul className="mb-[10px] cursor-pointer">
+                <ul className="mb-[10px]">
                   {category.map((item)=>(
-                  <li onClick={()=>handleCategory(item)}
-                    className={`text-[#767676] text-[16px] font-dm font-bold  py-[10px]
-                      }`}
+
+                    <li onClick={()=>handleCategory(item)}
+                    
+                    className={`text-[#767676] text-[16px] font-dm font-bold  py-[10px] 
+                      
+                    }`}
                   >
                     <p className="flex justify-between  items-center capitalize"> {item}</p>
+                   
                   </li>
                   ))}
-                  
+                 
+                 
+                      
                 </ul>
               )}
             </div>
-            <div className="">
+            <div className="cursor-pointer">
               <h4
                 onClick={() => setLatShow(!letShow)}
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Color{" "}
-                {letShow ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
+                {letShow ? <IoMdArrowDropup/> : <IoMdArrowDropdown/>}
               </h4>
               {letShow && (
                 <ul className="mb-[50px]">
                   <li className="text-[#767676] text-[16px] font-dm pb-[19px] flex items-center gap-[10px] border-b-1 border-[#D8D8D8] font-bold">
-                    <div className="h-[11px] w-[11px] bg-[#000] rounded-full"></div>
+                    <div className="h-[11px] w-[11px] bg-[#FF8686] rounded-full"></div>
                     Color 1
                   </li>
                   <li className="text-[#767676] text-[16px] font-dm py-[19px] flex items-center gap-[10px] border-b-1 border-[#D8D8D8] font-bold">
-                    <div className="h-[11px] w-[11px] bg-[#FF8686] rounded-full"></div>
+                    <div className="h-[11px] w-[11px] bg-[#000] rounded-full"></div>
                     Color 2
                   </li>
                   <li className="text-[#767676] text-[16px] font-dm py-[19px] flex items-center gap-[10px] border-b-1 border-[#D8D8D8] font-bold">
@@ -200,71 +231,55 @@ let handleCategory = (citem) =>{
                 </ul>
               )}
             </div>
-            <div className="">
+            <div className="cursor-pointer">
               <h4
                 onClick={() => setLatShowOne(!letShowOne)}
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Brand{" "}
-                {letShowOne ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
+                {letShowOne ? <IoMdArrowDropup/> : <IoMdArrowDropdown />}
               </h4>
               {letShowOne && (
                 <ul className="mb-[50px]">
-                  <li className="text-[#767676] text-[16px] font-dm pb-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    Brand 1
+                 {brand.map((item)=>(
+                   <li onClick={()=>handleBrand(item)} className="text-[#767676] text-[16px] font-dm pb-[19px] border-b-1 border-[#D8D8D8] font-bold">
+                    {item}
                   </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    Brand 2
-                  </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    Brand 3
-                  </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    Brand 4
-                  </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    Brand 5
-                  </li>
+                 ))}
+                
                 </ul>
               )}
             </div>
-            <div className="">
+            <div className="cursor-pointer">
               <h4
                 onClick={() => setLatShowThree(!letShowThree)}
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Price{" "}
-                {letShowThree ? <IoMdArrowDropup className='cursor-pointer' /> : <IoMdArrowDropdown className='cursor-pointer' />}
+                {letShowThree ? <IoMdArrowDropup/> : <IoMdArrowDropdown/>}
               </h4>
               {letShowThree && (
                 <ul>
-                  <li className="text-[#767676] text-[16px] font-dm pb-[19px] border-b-1 border-[#D8D8D8] font-bold">
+                  <li onClick={()=>handlePrice({low:0,high:9})} className="text-[#767676] text-[16px] font-dm pb-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     $0.00 - $9.99
                   </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
+                  <li onClick={()=>handlePrice({low:10,high:19})} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     $10.00 - $19.99
                   </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    $20.00 - $29.99
-                  </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    $30.00 - $39.99
-                  </li>
-                  <li className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold">
-                    $40.00 - $69.99
-                  </li>
-                </ul>
+               </ul>
               )}
             </div>
           </div>
           <div className="w-9/12 pl-[40px] ">
             <div className="flex pb-[60px]">
               <div className="flex gap-[12px] ">
-                <div className="h-[36px] w-[36px] flex justify-center items-center hover:text-white bg-white hover:bg-[#000]">
-                  <HiSquares2X2 className='cursor-pointer' />
+                <div
+                onClick={()=>setActive("")}
+                className={`${active == "active" ? "h-[36px] w-[36px] flex justify-center items-center hover:text-white bg-white hover:bg-[#000]" : "h-[36px] w-[36px] flex justify-center  text-white items-center hover:text-white bg-[#262626] hover:bg-[#000]"}`}>
+                  <HiSquares2X2/>
                 </div>
-                <div className="h-[36px] w-[36px] flex justify-center items-center hover:text-white bg-white hover:bg-[#000]">
-                  <FaThList className='cursor-pointer' />
+                <div onClick={handleList} className={`${active == "active" ? "h-[36px] w-[36px]  text-white flex justify-center items-center bg-[#262626] hover:bg-[#000]": "h-[36px] w-[36px] flex justify-center items-center hover:text-white  hover:bg-[#000]" }`}>
+                  <FaThList/>
                 </div>
               </div>
               <div className="flex pl-[280px] pr-[40px]">
@@ -272,7 +287,7 @@ let handleCategory = (citem) =>{
                 <form className="w-[239px]">
                   <select
                     id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#767676] cursor-pointer"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                   >
                     <option>United States</option>
                     <option>Canada</option>
@@ -286,28 +301,21 @@ let handleCategory = (citem) =>{
                 <form className="w-[139px]">
                   <select
                     id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-[#767676] cursor-pointer"
+                    onChange={handleChange}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white cursor-pointer"
                   >
-                    <option>36</option>
-                    <option>38</option>
-                    <option>40</option>
-                    <option>42</option>
+                    <option>6</option>
+                    <option>9</option>
+                    <option>12</option>
+                    <option>15</option>
                   </select>
                 </form>
               </div>
             </div>
             <div>
-              <Page allData={allData} cateFilter={cateFilter} />
+              <Page allData = {allData} cateFilter={cateFilter} active = {active}/>
 
-              <Pagination
-                pageNumber={pageNumber}
-                paginate={paginate}
-                currentPage={currentPage}
-                perPage={perPage}
-                info={info}
-                next={next}
-                prev={prev}
-              />
+              <Pagination pageNumber={pageNumber} paginate={paginate} currentPage={currentPage} perPage={perPage} info={info} next={next} prev={prev} cateFilter={cateFilter} />
             </div>
           </div>
         </div>
