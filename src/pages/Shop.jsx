@@ -173,7 +173,7 @@ let handleList = () =>{
             <div className="cursor-pointer">
               <h4
                 onClick={() => setCateShow(!cateShow)}
-                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[10px]"
+                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Category
                 {cateShow ? <IoMdArrowDropup/ > : <IoMdArrowDropdown/>}
@@ -287,7 +287,7 @@ let handleList = () =>{
                 <form className="w-[239px]">
                   <select
                     id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  "
                   >
                     <option>United States</option>
                     <option>Canada</option>
