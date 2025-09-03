@@ -266,17 +266,20 @@ const Shop = () => {
                   <li onClick={() => handlePrice({ low: 10, high: 19 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     $10.00 - $19.99
                   </li>
-                  <li onClick={() => handlePrice({ low: 10, high: 19 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                  <li onClick={() => handlePrice({ low: 20, high: 29.99 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     $20.00 - $29.99
                   </li>
-                  <li onClick={() => handlePrice({ low: 10, high: 19 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                  <li onClick={() => handlePrice({ low: 30, high: 39.99 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     $30.00 - $39.99
                   </li>
-                  <li onClick={() => handlePrice({ low: 10, high: 19 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                  <li onClick={() => handlePrice({ low: 40, high: 49.99 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     $40.00 - $49.00
                   </li>
-                  <li onClick={() => handlePrice({ low: 10, high: 19 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
-                    $50.00 - $99.99
+                  <li onClick={() => handlePrice({ low: 50, high: 99.99 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                    $50.00 - $99.9
+                  </li>
+                  <li onClick={() => handlePrice({ low: 100, high: 5000 })} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                    $100.00 - $5000.00
                   </li>
                 </ul>
               )}

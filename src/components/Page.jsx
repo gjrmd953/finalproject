@@ -80,22 +80,19 @@ const Page = ({ allData, cateFilter, active }) => {
           </div>
           {showAll ? cateFilter.length > 5 && (
             <div className="" onClick={handleShow}>
-              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold capitalize font-dm'>Show All</h2>
+              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold capitalize font-dm hover:text-white p-4 hover:bg-[#262626] w-[100px]'>Show All</h2>
             </div>
 
           )
 
             :
             <div className="" onClick={handleLess}>
-              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold capitalize font-dm'>Show Less</h2>
+              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold hover:text-white  capitalize font-dm p-4 hover:bg-[#262626] w-[120px] text-center'>Show Less</h2>
             </div>
-
           }
-
 
         </div>
         :
-
         <div className={`${active == "active" ? "w-full" : "flex flex-wrap justify-between"}`}>
           {allData.map((item) => (
 
@@ -130,17 +127,7 @@ const Page = ({ allData, cateFilter, active }) => {
           ))
           }
         </div>}
-
-
-
     </>
-
-
-
-
-
-
-
   )
 }
 
