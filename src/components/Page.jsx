@@ -80,14 +80,14 @@ const Page = ({ allData, cateFilter, active }) => {
           </div>
           {showAll ? cateFilter.length > 5 && (
             <div className="" onClick={handleShow}>
-              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold capitalize font-dm hover:text-white p-4 hover:bg-[#262626] w-[100px]'>Show All</h2>
+              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold capitalize font-dm hover:text-white p-4 hover:bg-[#262626] w-[100px] mb-3'>Show All</h2>
             </div>
 
           )
 
             :
             <div className="" onClick={handleLess}>
-              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold hover:text-white  capitalize font-dm p-4 hover:bg-[#262626] w-[120px] text-center'>Show Less</h2>
+              <h2 className='cursor-pointer pb-4 tex-[20px] hover:font-bold hover:text-white  capitalize font-dm p-4 hover:bg-[#262626] w-[120px] text-center mb-3'>Show Less</h2>
             </div>
           }
 
