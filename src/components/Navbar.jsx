@@ -53,11 +53,11 @@ const Navbar = () => {
             {cateShow && (
               <div className="lg:bg-[#262626] bg-[red] py-3 absolute left-0 top-[43px] w-full z-[10]">
                 <ul>
-                  <li className="py-2 relative text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)]">
+                  <li className="py-2 relative text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)] cursor-pointer">
                     <div className="flex justify-between">
                       <span>Accessories</span>
                       <div className="">
-                        <IoMdArrowDropright />
+                        <IoMdArrowDropright className="cursor-pointer" />
                       </div>
                     </div>
                     <ul className='absolute top-[10px] left-[100%] bg-[red] w-[300px] opacity-0 group-hover:opacity-100'>
@@ -67,7 +67,7 @@ const Navbar = () => {
                     </ul>
 
                   </li>
-                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)]">
+                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)] cursor-pointer">
                     <div className="flex justify-between">
                       <span>Furniture</span>
                       <div className="">
@@ -75,7 +75,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   </li>
-                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)]">
+                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)] cursor-pointer">
                     <div className="flex justify-between">
                       <span>Electronics</span>
                       <div className="">
@@ -83,7 +83,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   </li>
-                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)]">
+                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] border-b-[1px] border-[rgba(255,255,255,0.7)] cursor-pointer">
                     <div className="flex justify-between">
                       <span>Clothes</span>
                       <div className="">
@@ -91,7 +91,7 @@ const Navbar = () => {
                       </div>
                     </div>
                   </li>
-                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px]">
+                  <li className="py-2 text-[rgba(255,255,255,0.7)] pl-[20px] hover:text-[#fff] hover:pl-[30px] duration-300 ease-in-out font-dm text-[16px] cursor-pointer">
                     <div className="flex justify-between">
                       <span>Bags</span>
                       <div className="">
