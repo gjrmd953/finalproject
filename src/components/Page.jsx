@@ -11,7 +11,6 @@ const Page = ({ allData, cateFilter, active }) => {
   let { loading } = useContext(ApiData)
   let [cateMain, setCateMain] = useState([]);
   let [showAll, setShowAll] = useState([true]);
-  console.log(active);
 
 
   useEffect(() => {

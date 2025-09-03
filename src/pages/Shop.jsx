@@ -168,15 +168,15 @@ let handleList = () =>{
             </ol>
           </nav>
         </div>
-        <div className="flex">
-          <div className="w-3/12 pb-[70px]">
-            <div className="cursor-pointer">
+        <div className="flex cursor-pointer">
+          <div className="w-3/12 pb-[30px]">
+            <div className="">
               <h4
                 onClick={() => setCateShow(!cateShow)}
                 className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
               >
                 Shop by Category
-                {cateShow ? <IoMdArrowDropup/ > : <IoMdArrowDropdown/>}
+                {cateShow ? <IoMdArrowDropup/> : <IoMdArrowDropdown/>}
               </h4>
               {cateShow && (
                 <ul className="mb-[10px]">
@@ -231,10 +231,10 @@ let handleList = () =>{
                 </ul>
               )}
             </div>
-            <div className="cursor-pointer">
+            <div className="">
               <h4
                 onClick={() => setLatShowOne(!letShowOne)}
-                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
+                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px] cursor-pointer"
               >
                 Shop by Brand{" "}
                 {letShowOne ? <IoMdArrowDropup/> : <IoMdArrowDropdown />}
@@ -242,7 +242,7 @@ let handleList = () =>{
               {letShowOne && (
                 <ul className="mb-[50px]">
                  {brand.map((item)=>(
-                   <li onClick={()=>handleBrand(item)} className="text-[#767676] text-[16px] font-dm pb-[19px] border-b-1 border-[#D8D8D8] font-bold">
+                   <li onClick={()=>handleBrand(item)} className="text-[#767676] text-[16px] font-dm pb-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     {item}
                   </li>
                  ))}
@@ -250,10 +250,10 @@ let handleList = () =>{
                 </ul>
               )}
             </div>
-            <div className="cursor-pointer">
+            <div className="">
               <h4
                 onClick={() => setLatShowThree(!letShowThree)}
-                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px]"
+                className="flex justify-between items-center font-dm font-bold text-[20px] text-[#262626] pb-[30px] cursor-pointer"
               >
                 Shop by Price{" "}
                 {letShowThree ? <IoMdArrowDropup/> : <IoMdArrowDropdown/>}
@@ -265,6 +265,18 @@ let handleList = () =>{
                   </li>
                   <li onClick={()=>handlePrice({low:10,high:19})} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
                     $10.00 - $19.99
+                  </li>
+                  <li onClick={()=>handlePrice({low:10,high:19})} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                    $20.00 - $29.99
+                  </li>
+                  <li onClick={()=>handlePrice({low:10,high:19})} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                    $30.00 - $39.99
+                  </li>
+                  <li onClick={()=>handlePrice({low:10,high:19})} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                    $40.00 - $49.00
+                  </li>
+                  <li onClick={()=>handlePrice({low:10,high:19})} className="text-[#767676] text-[16px] font-dm py-[19px] border-b-1 border-[#D8D8D8] font-bold cursor-pointer">
+                    $50.00 - $99.99
                   </li>
                </ul>
               )}
@@ -282,12 +294,12 @@ let handleList = () =>{
                   <FaThList/>
                 </div>
               </div>
-              <div className="flex pl-[280px] pr-[40px]">
+              <div className="flex pl-[280px] pr-[40px] ">
                 <h4 className="pt-[6px] pr-[10px]">Sort by:</h4>
                 <form className="w-[239px]">
                   <select
                     id="countries"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  "
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg   block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white cursor-pointer "
                   >
                     <option>United States</option>
                     <option>Canada</option>
@@ -304,7 +316,7 @@ let handleList = () =>{
                     onChange={handleChange}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white cursor-pointer"
                   >
-                    <option>6</option>
+                    <option className='cursor-pointer'>6</option>
                     <option>9</option>
                     <option>12</option>
                     <option>15</option>
