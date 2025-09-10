@@ -1,7 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import "tailwindcss";
+
 @theme{
   --font-dm: "DM Sans", sans-serif;
+  --color-primary: #262626;
+  --color-secondary: #767676;
 }
 #banner .slick-dots .slick-active div {
   border-right: 2px solid #2222 !important;
