@@ -5,6 +5,7 @@ import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import CartImage from "../assets/cart.png";
 import Container from "./Container";
+import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -122,7 +123,9 @@ const Navbar = () => {
                 <IoMdArrowDropdown className="cursor-pointer" />
               </div>
               <div className="text-[#222]" ref={cartRef}>
+                <Link to="/Cart">
                 <FaCartArrowDown className="cursor-pointer"/>
+                </Link>
               </div>
             </div>
             {accShow && (

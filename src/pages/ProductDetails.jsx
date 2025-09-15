@@ -5,9 +5,12 @@ import Container from "../components/Container"
 
 import productImg from "../assets/product.png"
 import { FaStar } from "react-icons/fa"
+import ProductRating from "../components/ProductRating"
+import { useDispatch } from "react-redux"
+import { cartTotal } from "../slice/cartSlice"
 
 const ProductDetails = () => {
-  // let ProductId = useParams()
+  const dispatch = useDispatch()
   const { id } = useParams()
   console.log(id);
 
@@ -24,7 +27,11 @@ const ProductDetails = () => {
     getSingleData()
   }, [])
 
-  console.log(SingleData);
+  const handleAdd = () =>{
+    console.log("ok");
+    dispatch(cartTotal(SingleData))
+    
+  }
 
 
   return (
@@ -106,10 +113,11 @@ const ProductDetails = () => {
 
         <div className="mb-[134px]">
           <div className="flex flex-wrap justify-between gap-5">
-            <img className="w-[48%]" src={productImg} alt="" />
-            <img className="w-[48%]" src={productImg} alt="" />
-            <img className="w-[48%]" src={productImg} alt="" />
-            <img className="w-[48%]" src={productImg} alt="" />
+            {
+              SingleData?.images?.map((img)=>(
+                <img className="w-[48%]" src={img} alt="" />
+              ))
+            }
           </div>
           <div className="mt-[49px]">
             <h4
@@ -117,21 +125,22 @@ const ProductDetails = () => {
               Products
             </h4>
             <div className="flex items-center space-x-[25px] pt-[15px] pb-[21px]">
-              <div className="flex text-[#FFD881] gap-x-1">
+              <div className="flex gap-x-1">
+                {/* <FaStar />
                 <FaStar />
                 <FaStar />
                 <FaStar />
-                <FaStar />
-                <FaStar />
+                <FaStar /> */}
+                <ProductRating rating ={SingleData.rating}/>
               </div>
-              <div className="">
-                <p className="text-secondary text-[14px] font-dm">1 Review</p>
+              <div className="flex space-x-5">
+                <p className="text-secondary text-[14px] font-dm font-bold">Rating({SingleData.rating})</p>
+                <p className="text-secondary text-[14px] font-dm font-bold">{SingleData?.reviews?.length} Review</p>
               </div>
             </div>
-
             <div className="flex space-x-[22px] items-center">
               <p className="font-dm text-secondary text-[16px]"><del>$88.00</del></p>
-              <p className="font-dm font-bold text-primary text-[20px]">$44.00</p>
+              <p className="font-dm font-bold text-primary text-[20px]">${SingleData?.price}</p>
             </div>
 
           </div>
@@ -171,16 +180,30 @@ const ProductDetails = () => {
             <p className="font-dm font-bold text-[16px] text-primary">STATUS:</p>
 
              <div>
-                <p className="font-dm text-[16px] text-secondary">In stock</p>
+                <p className="font-dm text-[16px] text-secondary">{SingleData?.availabilityStatus}</p>
              </div>
           </div>
           <hr className="w-[780px] text-[#D8D8D8] mt-[24px]"/>
 
             <div className="space-x-[20px] mt-[30px]">
               <button className="py-[16px] px-[40px] font-bold text-primary hover:bg-primary hover:text-white duration-300 ease-in-out cursor-pointer font-dm border-2 border-primary">Add to Wish List</button>
-              <button className="py-[16px] px-[40px] font-bold text-primary hover:bg-primary hover:text-white duration-300 ease-in-out cursor-pointer font-dm border-2 border-primary">Add to Cart</button>
+              <button
+              onClick={handleAdd}
+                  className="py-[16px] px-[40px] font-bold text-primary hover:bg-primary hover:text-white duration-300 ease-in-out cursor-pointer font-dm border-2 border-primary">
+                  Add to Cart
+                </button>
              </div>
              <hr className="w-[780px] text-[#D8D8D8] mt-[24px]"/>
+
+             <div className="mt-[30px]">
+              <h3 className="font-dm font-bold text-[29px] text-primary">Reviews</h3>
+              <div className="mt-[10px]">
+                <p className="my-[15px] font-dm text-primary text-[16px]">John Ford</p>
+                <p className="mt-[14px] font-dm text-[16px] text-primary">
+                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                </p>
+              </div>
+             </div>
         </div>
 
       </Container>

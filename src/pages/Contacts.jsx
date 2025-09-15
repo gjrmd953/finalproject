@@ -1,14 +1,12 @@
-import { Link } from "react-router-dom"
-import Container from "../components/Container"
-import aboutImgOne from "../assets/about-1.png"
-import aboutImgTwo from "../assets/about-2.png"
+import React from 'react'
+import Container from '../components/Container'
+import { Link } from 'react-router-dom'
 
-const About = () => {
+const Contacts = () => {
   return (
-    <>
-      <div>
+    <div>
         <Container>
-          <div className="w-2/12 py-[100px]">
+                      <div className="w-2/12 py-[100px]">
             <div className="">
               <h2 className="font-dm font-bold pb-[10px] text-[#262626] text-[49px]">
                 About
@@ -80,51 +78,9 @@ const About = () => {
               </ol>
             </nav>
           </div>
-
-          <div className="mb-[128px]">
-            <div className="flex justify-between">
-              <img className="w-[49%]" src={aboutImgOne} alt="" />
-              <img className="w-[49%]" src={aboutImgTwo} alt="" />
-            </div>
-          </div>
-
-          <div className="mb-[118px]">
-            <p className="font-dm text-primary text-[39px]">
-              Orebi is one of the world’s leading ecommerce brands and is internationally recognized for celebrating the essence of classic Worldwide cool looking style.
-            </p>
-          </div>
-
-          <div className="flex justify-between mb-[131px]">
-            <div className="w-[32%]">
-              <h3 className="font-dm font-bold text-[25px] text-primary mb-[11px]">
-                Our Vision
-              </h3>
-              <p className="font-dm text-secondary">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an   printer took a galley of type and scrambled it to make a type specimen book.
-              </p>
-            </div>
-            <div className="w-[32%]">
-              <h3 className="font-dm font-bold text-[25px] text-primary mb-[11px]">
-                Our Story
-              </h3>
-              <p className="font-dm text-secondary">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic.
-              </p>
-            </div>
-            <div className="w-[32%]">
-              <h3 className="font-dm font-bold text-[25px] text-primary mb-[11px]">
-                Our Brands
-              </h3>
-              <p className="font-dm text-secondary">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley.
-              </p>
-            </div>
-
-          </div>
         </Container>
-      </div>
-    </>
-
+    </div>
   )
 }
-export default About
+
+export default Contacts
