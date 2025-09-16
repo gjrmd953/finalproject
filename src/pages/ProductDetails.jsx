@@ -265,7 +265,7 @@ const ProductDetails = () => {
 
               <input className='w-full focus:outline-0 font-dm text-[14px] pl-2.5' type="text" placeholder='Your message here' />
 
-              <hr className="border-t-2 border-[#D8D8D8] pt-[16px] pb-[23px]" />
+              <hr className="border-t-2 border-[#D8D8D8] mt-[16px] pb-[23px]" />
               {/* Message end */}
 
             </form>
