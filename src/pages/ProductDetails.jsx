@@ -4,10 +4,11 @@ import { Link, useParams } from "react-router-dom"
 import Container from "../components/Container"
 
 import productImg from "../assets/product.png"
-import { FaStar } from "react-icons/fa"
+import { FaMinus, FaPlus, FaStar } from "react-icons/fa"
 import ProductRating from "../components/ProductRating"
 import { useDispatch } from "react-redux"
 import { cartTotal } from "../slice/cartSlice"
+import { FaPersonCirclePlus } from "react-icons/fa6"
 
 const ProductDetails = () => {
   const dispatch = useDispatch()
@@ -27,12 +28,13 @@ const ProductDetails = () => {
     getSingleData()
   }, [])
 
-  const handleAdd = () =>{
+  const handleAdd = () => {
     console.log("ok");
     dispatch(cartTotal(SingleData))
-    
-  }
 
+  }
+  const [joshim, setJoshim] = useState(false)
+  const [joshimtwo, setJoshimTwo] = useState(false)
 
   return (
     <div>
@@ -114,7 +116,7 @@ const ProductDetails = () => {
         <div className="mb-[134px]">
           <div className="flex flex-wrap justify-between gap-5">
             {
-              SingleData?.images?.map((img)=>(
+              SingleData?.images?.map((img) => (
                 <img className="w-[48%]" src={img} alt="" />
               ))
             }
@@ -131,7 +133,7 @@ const ProductDetails = () => {
                 <FaStar />
                 <FaStar />
                 <FaStar /> */}
-                <ProductRating rating ={SingleData.rating}/>
+                <ProductRating rating={SingleData.rating} />
               </div>
               <div className="flex space-x-5">
                 <p className="text-secondary text-[14px] font-dm font-bold">Rating({SingleData.rating})</p>
@@ -144,7 +146,7 @@ const ProductDetails = () => {
             </div>
 
           </div>
-          <hr className="w-[780px] text-[#D8D8D8] mt-[24px]"/>
+          <hr className="w-[780px] text-[#D8D8D8] mt-[24px]" />
 
           <div className="flex space-x-[53px] items-center mt-[30px]">
             <p className="font-dm font-bold text-[16px] text-primary">COLOR:</p>
@@ -159,53 +161,120 @@ const ProductDetails = () => {
           <div className="flex space-x-[53px] items-center my-[30px]">
             <p className="font-dm font-bold text-[16px] text-primary">SIZE:</p>
 
-             <div className="">
-                <select className="border-2 border-[#D9D9D9] px-[21px] py-1 text-secondary">
-                  <option value="S">S</option>
-                </select>
-             </div>
+            <div className="">
+              <select className="border-2 w-[130px] border-[#D9D9D9] px-[21px] py-1 text-secondary">
+                <option value="S">S</option>
+                <option value="S">M</option>
+                <option value="S">L</option>
+                <option value="S">XL</option>
+              </select>
+            </div>
           </div>
           <div className="flex space-x-[53px] items-center my-[30px]">
             <p className="font-dm font-bold text-[16px] text-primary">QUANTITY:</p>
 
-             <div className="flex items-center border-2 border-[#D9D9D9] px-[21px] py-1 space-x-[35px] text-secondary">
-                <p>-</p>
-                <p>1</p>
-                <p>+</p>
-             </div>
+            <div className="flex items-center border-2 border-[#D9D9D9] px-[21px] py-1 space-x-[35px] text-secondary">
+              <p>-</p>
+              <p>1</p>
+              <p>+</p>
+            </div>
           </div>
-          <hr className="w-[780px] text-[#D8D8D8] mt-[24px]"/>
+          <hr className="w-[780px] text-[#D8D8D8] mt-[24px]" />
 
           <div className="flex space-x-[53px] items-center my-[30px]">
             <p className="font-dm font-bold text-[16px] text-primary">STATUS:</p>
 
-             <div>
-                <p className="font-dm text-[16px] text-secondary">{SingleData?.availabilityStatus}</p>
-             </div>
+            <div>
+              <p className="font-dm text-[16px] text-secondary">{SingleData?.availabilityStatus}</p>
+            </div>
           </div>
-          <hr className="w-[780px] text-[#D8D8D8] mt-[24px]"/>
+          <hr className="w-[780px] text-[#D8D8D8] mt-[24px]" />
 
-            <div className="space-x-[20px] mt-[30px]">
-              <button className="py-[16px] px-[40px] font-bold text-primary hover:bg-primary hover:text-white duration-300 ease-in-out cursor-pointer font-dm border-2 border-primary">Add to Wish List</button>
-              <button
+          <div className="space-x-[20px] mt-[30px]">
+            <button className="py-[16px] px-[40px] font-bold text-primary hover:bg-primary hover:text-white duration-300 ease-in-out cursor-pointer font-dm border-2 border-primary">Add to Wish List</button>
+            <button
               onClick={handleAdd}
-                  className="py-[16px] px-[40px] font-bold text-primary hover:bg-primary hover:text-white duration-300 ease-in-out cursor-pointer font-dm border-2 border-primary">
-                  Add to Cart
-                </button>
-             </div>
-             <hr className="w-[780px] text-[#D8D8D8] mt-[24px]"/>
+              className="py-[16px] px-[40px] font-bold text-primary hover:bg-primary hover:text-white duration-300 ease-in-out cursor-pointer font-dm border-2 border-primary">
+              Add to Cart
+            </button>
+          </div>
+          <hr className="w-[780px] text-[#D8D8D8] mt-[24px]" />
 
-             <div className="mt-[30px]">
-              <h3 className="font-dm font-bold text-[29px] text-primary">Reviews</h3>
-              <div className="mt-[10px]">
-                <p className="my-[15px] font-dm text-primary text-[16px]">John Ford</p>
-                <p className="mt-[14px] font-dm text-[16px] text-primary">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                </p>
-              </div>
-             </div>
+          <div className="w-1/2 mt-[24px]">
+            <div onClick={(() => setJoshim(!joshim))} className="flex  justify-between items-center">
+              <h5 className="font-dm font-bold text-[16px] text-primary">FEATURES  & DETAILS</h5>
+              <p >{joshim ? <FaMinus /> : <FaPlus />}</p>
+            </div>
+            {joshim &&
+              <h2 className="mt-[24px] font-dm text-primary">
+                This product is designed with high-quality materials to ensure durability and comfort. It comes in a modern and stylish design that suits everyday use as well as special occasions. Lightweight and easy to carry, the product offers practical functionality without compromising on looks. With multiple color options and sizes available, it is perfect for users of all ages. Easy to maintain and long-lasting, this product provides excellent value for money, making it a must-have for your daily lifestyle.
+              </h2>
+            }
+            <hr className="w-[780px] text-[#D8D8D8] mt-[24px]" />
+          </div>
+
+          <div className="w-1/2 mt-[24px]">
+            <div onClick={(() => setJoshimTwo(!joshimtwo))} className="flex  justify-between items-center">
+              <h5 className="font-dm font-bold text-[16px] text-primary">SHIPPING & RETURNS</h5>
+              <p >{joshimtwo ? <FaMinus /> : <FaPlus />}</p>
+            </div>
+            {joshimtwo &&
+              <h2 className="mt-[24px] font-dm text-primary">
+                We offer fast and reliable shipping on all orders. Products are usually dispatched within 1–3 business days, and delivery time may vary depending on your location. You will receive a tracking number once your order has been shipped.
+                <br />
+                <br />
+                If you are not completely satisfied with your purchase, you can return the product within 7–14 days of delivery, provided it is unused and in its original packaging. Refunds or exchanges will be processed once we receive the returned item. Please note that shipping charges are non-refundable, and return shipping costs are the responsibility of the customer unless the product is defective or damaged.
+              </h2>
+            }
+            <hr className="w-[780px] text-[#D8D8D8] mt-[24px]" />
+          </div>
+
+          <div className="mt-[30px]">
+            <h3 className="font-dm font-bold text-[29px] text-primary">Reviews</h3>
+            <div className="mt-[10px]">
+              <p className="my-[15px] font-dm text-primary text-[16px]">John Ford</p>
+              <p className="mt-[14px] mb-[53px] font-dm text-[16px] text-primary">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+              </p>
+            </div>
+          </div>
+
+          <div className="w-1/2">
+            <form action="">
+              <h2 className='font-dm font-bold text-[39px] text-primary pb-[42px]'>
+                Add a Review
+              </h2>
+              {/* Name start */}
+              <label className='pb-[10px] inline-block font-dm font-bold text-[16px]' htmlFor="">Name</label>
+
+              <input className='w-full py-4 pl-2.5 focus:outline-0 font-dm text-[14px]' type="text" placeholder='Your name here' />
+
+              <hr className="border-t-2 border-[#D8D8D8] pt-[16px] pb-[23px]" />
+              {/* Name end*/}
+
+              {/* Email start*/}
+              <label className='w-full inline-block pb-[10px] font-dm font-bold text-[16px]' htmlFor="">Email</label>
+
+              <input className='w-full inline-block py-4 focus:outline-0 font-dm text-[14px] pl-2.5' type="text" placeholder='Your email here' />
+
+              <hr className="border-t-2 border-[#D8D8D8] pt-[16px] pb-[23px]" />
+              {/* Email end*/}
+
+              {/* Message start */}
+              <label className='w-full inline-block font-dm font-bold text-[16px] pb-[28px]' htmlFor="">Message</label>
+
+              <input className='w-full focus:outline-0 font-dm text-[14px] pl-2.5' type="text" placeholder='Your message here' />
+
+              <hr className="border-t-2 border-[#D8D8D8] pt-[16px] pb-[23px]" />
+              {/* Message end */}
+
+            </form>
+            <button className="">
+              <h2 className=' font-dm font-bold text-[14px] text-primary bg-[#D8D8D8] hover:text-white hover:bg-primary py-[16px] px-[70px] '>Post</h2>
+            </button>
+          </div>
+
         </div>
-
       </Container>
     </div>
   )

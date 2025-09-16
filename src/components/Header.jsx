@@ -53,7 +53,7 @@ const Header = () => {
                 <li>
                   <Link
                     className="font-dm text-[14px] text-[#767676] hover:text-[#262626] hover:font-bold duration-300 ease-in-out text-capitalize"
-                    href="#"
+                    to="/contacts"
                   >
                     Contact
                   </Link>
