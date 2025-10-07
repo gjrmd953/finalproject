@@ -2,8 +2,18 @@ import React from 'react'
 import Container from '../components/Container'
 import cartImg from "../assets/cart img.png"
 import { Link } from 'react-router-dom'
-
+import { useDispatch, useSelector } from 'react-redux'
+import { cartQuantity } from '../slice/cartSlice'
 const Cart = () => {
+  const dispatch = useDispatch()
+  const data = useSelector(state => state.cartDetails.cartItems)
+  const handleIncrement = (item) =>{
+    console.log(item,"ok");
+    dispatch(cartQuantity(item))
+    
+  }
+
+
   return (
     <div>
       <Container>
@@ -92,30 +102,40 @@ const Cart = () => {
               <p className='font-bold text-[16px] text-primary'>Quantity</p>
             </div>
             <div className='w-[25%]'>
-              <p className='font-bold text-[16px] text-primary'>Price</p>
+              <p className='font-bold text-[16px] text-primary'>Total</p>
             </div>
           </div>
-          <div className="flex justify-between items-center font-dm py-[34px] px-[20px]">
-            <div className='w-[25%]'>
-              <div className='font-bold text-[16px] text-primary flex items-center space-x-[20px]'>
-                <img className='w-[100px]' src={cartImg} alt="" />
-                <p>Product name</p>
+
+          {
+            data.length > 0 ? data?.map((item) => (
+              <div className="flex justify-between items-center font-dm py-[34px] px-[20px]">
+                <div className='w-[25%]'>
+                  <div className='font-bold text-[16px] text-primary flex items-center space-x-[20px]'>
+                    <img className='w-[100px]' src={item.thumbnail} alt="" />
+                    <p>{item.title}</p>
+                  </div>
+                </div>
+                <div className='w-[25%]'>
+                  <p className='font-bold font-dm text-[16px] text-primary'>${item.price}</p>
+                </div>
+                <div className='w-[25%]'>
+                  <div className="flex items-center border-2 border-[#D9D9D9] px-[21px] py-1 space-x-[35px] text-secondary w-fit">
+                    <p>-</p>
+                    <p>{item.cartQuantity}</p>
+                    <p className='cursor-pointer' onClick={()=>handleIncrement(item)}>+</p>
+                  </div>
+                </div>
+                <div className='w-[25%]'>
+                  <p className='font-bold text-[16px] text-primary'>
+                    {
+                      item.price * item.cartQuantity
+                    }
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className='w-[25%]'>
-              <p className='font-bold font-dm text-[16px] text-primary'>$44.00</p>
-            </div>
-            <div className='w-[25%]'>
-              <div className="flex items-center border-2 border-[#D9D9D9] px-[21px] py-1 space-x-[35px] text-secondary w-fit">
-                <p>-</p>
-                <p>1</p>
-                <p>+</p>
-              </div>
-            </div>
-            <div className='w-[25%]'>
-              <p className='font-bold text-[16px] text-primary'>$44.00</p>
-            </div>
-          </div>
+            ))
+              : <h5 className='border-b-2 border-x-2 border-[#EAEAEA] pl-4 py-2 font-dm font-bold text-[16px] text-[#262626]'>!on items......</h5>
+          }
         </div>
       </Container>
     </div>
