@@ -7,10 +7,13 @@ import { cartQuantity } from '../slice/cartSlice'
 const Cart = () => {
   const dispatch = useDispatch()
   const data = useSelector(state => state.cartDetails.cartItems)
-  const handleIncrement = (item) =>{
-    console.log(item,"ok");
-    dispatch(cartQuantity(item))
-    
+  const handleIncrement = (id) => {
+    console.log(id, "id");
+    dispatch(cartQuantity({ id: id, type: "increment" }))
+  }
+  const handleDecrement = (id) => {
+    console.log(id, "id");
+    dispatch(cartQuantity({ id: id, type: "decrement" }))
   }
 
 
@@ -107,7 +110,7 @@ const Cart = () => {
           </div>
 
           {
-            data.length > 0 ? data?.map((item) => (
+            data.length > 0 ? data?.map((item, index) => (
               <div className="flex justify-between items-center font-dm py-[34px] px-[20px]">
                 <div className='w-[25%]'>
                   <div className='font-bold text-[16px] text-primary flex items-center space-x-[20px]'>
@@ -120,9 +123,9 @@ const Cart = () => {
                 </div>
                 <div className='w-[25%]'>
                   <div className="flex items-center border-2 border-[#D9D9D9] px-[21px] py-1 space-x-[35px] text-secondary w-fit">
-                    <p>-</p>
+                    <p className='cursor-pointer' onClick={() => handleDecrement(index)}>-</p>
                     <p>{item.cartQuantity}</p>
-                    <p className='cursor-pointer' onClick={()=>handleIncrement(item)}>+</p>
+                    <p className='cursor-pointer' onClick={() => handleIncrement(index)}>+</p>
                   </div>
                 </div>
                 <div className='w-[25%]'>

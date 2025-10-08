@@ -15,15 +15,19 @@ export const cartSlice = createSlice({
       } else {
         state.cartItems.push({ ...actions.payload, cartQuantity: 1 })
       }
-      localStorage.setItem("cartDetails", JSON.stringify(actions.payload))
+      localStorage.setItem("cartDetails", JSON.stringify(state.cartItems))
 
 
     },
     cartQuantity: (state,actions) =>{
       console.log(state);
       console.log(actions.payload);
-      
-      
+      if (actions.payload.type == "increment"){
+        state.cartItems[actions.payload.id].cartQuantity += 1
+      }else{
+        state.cartItems[actions.payload.id].cartQuantity -= 1
+      }
+      localStorage.setItem("cartDetails", JSON.stringify(state.cartItems))
     }
   }
 });
