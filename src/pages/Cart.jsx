@@ -137,7 +137,7 @@ const Cart = () => {
                 </div>
               </div>
             ))
-              : <h5 className='border-b-2 border-x-2 border-[#EAEAEA] pl-4 py-2 font-dm font-bold text-[16px] text-[#262626]'>!on items......</h5>
+              : <h5 className='border-b-2 border-x-2 border-[#EAEAEA] pl-4 py-2 font-dm font-bold text-[16px] text-[#262626]'>!no items......</h5>
           }
         </div>
       </Container>
