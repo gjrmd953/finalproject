@@ -4,9 +4,18 @@ import cartImg from "../assets/cart img.png"
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartQuantity } from '../slice/cartSlice'
+import { useState } from 'react'
 const Cart = () => {
   const dispatch = useDispatch()
+  const [coponName, setCoponName] = useState("")
+  const [discount, setDiscount] = useState("")
   const data = useSelector(state => state.cartDetails.cartItems)
+
+  const totalPrice = data.reduce((prev, current) => {
+    return prev + current.price * current.cartQuantity
+  }, 0)
+  console.log(totalPrice);
+
   const handleIncrement = (id) => {
     console.log(id, "id");
     dispatch(cartQuantity({ id: id, type: "increment" }))
@@ -15,6 +24,19 @@ const Cart = () => {
     console.log(id, "id");
     dispatch(cartQuantity({ id: id, type: "decrement" }))
   }
+
+  const handleChange = (e) => {
+    setCoponName(e.target.value);
+
+  }
+  console.log(coponName);
+  const handleApply = () => {
+    if (coponName == "fdr2413") {
+      console.log("20%");
+      setDiscount(totalPrice * 0.2);
+    }
+  }
+  const Total = totalPrice - discount
 
 
   return (
@@ -109,36 +131,54 @@ const Cart = () => {
             </div>
           </div>
 
-          {
-            data.length > 0 ? data?.map((item, index) => (
-              <div className="flex justify-between items-center font-dm py-[34px] px-[20px]">
-                <div className='w-[25%]'>
-                  <div className='font-bold text-[16px] text-primary flex items-center space-x-[20px]'>
-                    <img className='w-[100px]' src={item.thumbnail} alt="" />
-                    <p>{item.title}</p>
+          <div className='border-b'>
+            {
+              data.length > 0 ? data?.map((item, index) => (
+                <div className="flex justify-between items-center font-dm py-[34px] px-[20px]">
+                  <div className='w-[25%]'>
+                    <div className='font-bold text-[16px] text-primary flex items-center space-x-[20px]'>
+                      <img className='w-[100px]' src={item.thumbnail} alt="" />
+                      <p>{item.title}</p>
+                    </div>
+                  </div>
+                  <div className='w-[25%]'>
+                    <p className='font-bold font-dm text-[16px] text-primary'>${item.price}</p>
+                  </div>
+                  <div className='w-[25%]'>
+                    <div className="flex items-center border-2 border-[#D9D9D9] px-[21px] py-1 space-x-[35px] text-secondary w-fit">
+                      <p className='cursor-pointer' onClick={() => handleDecrement(index)}>-</p>
+                      <p>{item.cartQuantity}</p>
+                      <p className='cursor-pointer' onClick={() => handleIncrement(index)}>+</p>
+                    </div>
+                  </div>
+                  <div className='w-[25%]'>
+                    <p className='font-bold text-[16px] text-primary'>
+                      {
+                        item.price * item.cartQuantity
+                      }
+                    </p>
                   </div>
                 </div>
-                <div className='w-[25%]'>
-                  <p className='font-bold font-dm text-[16px] text-primary'>${item.price}</p>
-                </div>
-                <div className='w-[25%]'>
-                  <div className="flex items-center border-2 border-[#D9D9D9] px-[21px] py-1 space-x-[35px] text-secondary w-fit">
-                    <p className='cursor-pointer' onClick={() => handleDecrement(index)}>-</p>
-                    <p>{item.cartQuantity}</p>
-                    <p className='cursor-pointer' onClick={() => handleIncrement(index)}>+</p>
-                  </div>
-                </div>
-                <div className='w-[25%]'>
-                  <p className='font-bold text-[16px] text-primary'>
-                    {
-                      item.price * item.cartQuantity
-                    }
-                  </p>
-                </div>
-              </div>
-            ))
-              : <h5 className='border-b-2 border-x-2 border-[#EAEAEA] pl-4 py-2 font-dm font-bold text-[16px] text-[#262626]'>!no items......</h5>
-          }
+              ))
+                : <h5 className='border-b-2 border-x-2 border-[#EAEAEA] pl-4 py-2 font-dm font-bold text-[16px] text-[#262626]'>!no items......</h5>
+            }
+          </div>
+          <div className='flex justify-end'>
+            <div className="w-[25%] font-dm font-bold text-[20px] mt-4">subtotals $ {totalPrice.toFixed(2)}</div>
+          </div>
+          <div className='flex justify-end'>
+            <div className="w-[25%] font-dm font-bold text-[20px] mt-4">discount $ {discount}</div>
+          </div>
+          <div className='flex justify-end'>
+            <div className="w-[25%] font-dm font-bold text-[20px] mt-4">Total $ {Total}</div>
+          </div>
+          <div className="">
+            <input onChange={handleChange} className='border-1 py-2 px-3' type="text"
+              placeholder='Apply coupon' />
+            <button onClick={handleApply} className='bg-primary text-white py-2 px-3 rounded ml-5'>
+              Apply
+            </button>
+          </div>
         </div>
       </Container>
     </div>
